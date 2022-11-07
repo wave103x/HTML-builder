@@ -8,12 +8,12 @@ html();
 
 async function css() {
   try {
+    fs.writeFile(path.join(__dirname, 'project-dist', 'style.css'), '');
     const files = await fs.readdir(path.join(__dirname, 'styles'), { withFileTypes: true });
     for (const file of files) {
       if (file.isFile() && path.extname(file.name) === '.css') {
-        fs.writeFile(path.join(__dirname, 'project-dist', 'style.css'), '');
         const data = await fs.readFile(path.join(__dirname, 'styles', file.name), { encoding: 'utf-8' });
-        fs.appendFile(path.join(__dirname, 'project-dist', 'style.css'), data)
+        fs.appendFile(path.join(__dirname, 'project-dist', 'style.css'), data);
       }
     }
   } catch (err) {
